@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -30,16 +31,18 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CircularProgressbar(
-    completedPercentage:Int=30,
-
+fun CircularProgressbar(modifier: Modifier,
+    completedPercentage:Double=30.0,
+    backgroundColor: Color= Color(0,0,0,0),
+    progressbarGradientColors:List<Color> = listOf(Color(0,0,255), Color(0,255,0),Color(0,0,255)),
+    textVisibility: Boolean=true
 ){
-    val maxSweepAngle = 357f
 
-    var targetAngle by remember { mutableStateOf(0f) }
+    var targetAngle by remember { mutableFloatStateOf(0f) }
+    val isTextVisible  by remember { mutableStateOf(textVisibility) }
 
     LaunchedEffect(Unit) {
-        targetAngle = maxSweepAngle
+        targetAngle = (completedPercentage*3.6).toFloat()
     }
 
     val animatedSweepAngle by animateFloatAsState(
@@ -49,19 +52,19 @@ fun CircularProgressbar(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(200.dp)
-            .background(Color(21f,21f,21f))
+            .background(backgroundColor)
             .padding(16.dp)
     ) {
-    Canvas(modifier = Modifier.fillMaxSize().background(Color.White)){
+    Canvas(modifier = Modifier.fillMaxSize()){
         val canvasWidth = size.width
         val canvasHeight = size.height
         val arcSize = Size(canvasWidth, canvasHeight)
 
         drawArc(
             brush = Brush.sweepGradient(
-                colors = listOf(Color.Blue, Color.Green, Color.Blue),
+                colors = progressbarGradientColors,
                 center = Offset(canvasWidth / 2, canvasHeight / 2)
             ),
             startAngle = -90F,
@@ -73,6 +76,8 @@ fun CircularProgressbar(
             )
 
     }
-        Text(modifier = Modifier.align(Alignment.Center), text = "$completedPercentage%", fontSize = 50.sp)
+        if(isTextVisible){
+            Text(modifier = Modifier.align(Alignment.Center), text = "$completedPercentage%", fontSize = 50.sp)
+        }
     }
 }
