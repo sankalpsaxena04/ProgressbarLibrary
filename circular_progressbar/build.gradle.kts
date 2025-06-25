@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("maven-publish")
+    id("signing")
 
 }
 
@@ -57,4 +59,18 @@ dependencies {
 //    androidTestImplementation(libs.androidx.espresso.core)
 //    androidTestImplementation(libs.androidx.ui.test.junit4)
 //    debugImplementation(libs.androidx.ui.test.manifest)
+}
+
+afterEvaluate {
+    publishing{
+        publications{
+            create<MavenPublication>("release"){
+                from(components["release"])
+                groupId = "com.github.sankalpsaxena04"
+                artifactId = "circular-progressbar-compose"
+                version = "1.0"
+            }
+
+        }
+    }
 }
