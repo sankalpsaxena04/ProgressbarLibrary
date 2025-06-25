@@ -4,13 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,13 +20,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             ProgressbarLibraryTheme {
 
-                CircularProgressbar(
-                    Modifier.size(300.dp),
-                    cpbarThickness = 24.dp,
-                    title="Testing",
-                    titleVisibility = true,
-                    completedPercentage = 75.0
-                )
+
+
+                    CircularProgressbar(Modifier.size(200.dp),
+                        completedPercentage = 75.0,
+                        title = "hello",
+                        titleVisibility = true,
+                        cpbarThickness = 8.dp)
             }
         }
     }

@@ -56,5 +56,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(project(":circular_progressbar"))
+    implementation("com.github.sankalpsaxena04:ProgressbarLibrary:1.0")
 }

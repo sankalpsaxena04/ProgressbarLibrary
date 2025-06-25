@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CircularProgressbar(
     modifier: Modifier = Modifier.size(200.dp),
-    cpbarThickness:Dp=20.dp,
+    cpbarThickness:Dp=8.dp,
     completedPercentage: Double = 30.0,
     backgroundColor: Color = Color.Transparent,
     progressbarGradientColors: List<Color> = listOf(Color(0, 0, 255), Color(0, 255, 0), Color(0, 0, 255)),
