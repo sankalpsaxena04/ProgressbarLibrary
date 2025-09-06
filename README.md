@@ -36,7 +36,15 @@
     </section>
     <section>
         <h2>📦 Installation</h2>
-        <p>Add this to your <code>build.gradle.kts</code>:</p>
+        <p>Add this to your <code>settings.gradle.kts</code>:</p>
+        <pre><code>dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url = uri("https://jitpack.io") }
+		}
+	}</code></pre>
+<p>Add this to your <code>build.gradle.kts</code>:</p>
         <pre><code>
 dependencies {
     implementation("com.github.sankalpsaxena04:ProgressbarLibrary:cpb-2.0")
