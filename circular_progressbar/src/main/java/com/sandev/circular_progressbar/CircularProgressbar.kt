@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
 
@@ -41,11 +42,8 @@ fun CircularProgressbar(
     title: String,
     titleVisibility: Boolean = false
 ) {
-    var targetAngle by remember { mutableFloatStateOf(0f) }
+    val targetAngle =(completedPercentage * 3.6).toFloat()
 
-    LaunchedEffect(Unit) {
-        targetAngle = (completedPercentage * 3.6).toFloat()
-    }
 
     val animatedSweepAngle by animateFloatAsState(
         targetValue = targetAngle,
@@ -84,7 +82,9 @@ fun CircularProgressbar(
             if (percentageVisibility) {
                 Text(
                     text = "${completedPercentage.toInt()}%",
-                    fontSize = 36.sp
+                    fontSize = 36.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
